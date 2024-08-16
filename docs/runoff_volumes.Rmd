@@ -1,0 +1,33 @@
+---
+title: "runoff_volumes"
+output: html_document
+date: "2024-08-16"
+editor_options: 
+  chunk_output_type: console
+---
+```{r}
+library(tidyverse)
+library(here)
+```
+
+
+```{r}
+ia<-seq(from=0.6, to=0.8, by=0.01)
+runoff_df<-data.frame(data=predict_runoff(ia,182))
+runoff_df
+```
+```{r}
+ggplot(data=runoff_df)+aes(x=ia,y=data)+geom_point()+geom_line()+
+    labs(title = "Impervious Fraction Vs. Volume",
+       x ="Imprevious Fraction" ,
+       y = "Volume (ft3)")
+  
+
+
+ggsave(here::here("figs", "Runoff_vol.png"), height = 6, width = 5)
+
+```
+```{r}
+
+```
+
